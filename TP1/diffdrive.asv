@@ -1,0 +1,8 @@
+function [x_n, y_n, theta_n] = diffdrive(x, y, theta, vl, vr, t, l)
+    vel_rot = (vr - vl)/l;
+    vel = (vr+vl)/2;
+    [t,pose] = ode(@(t,pose) dirKin(t,pose,vel,vel_rot), [0,t], [x,y,theta]);
+    x_n = pose(1);
+    
+    
+end
