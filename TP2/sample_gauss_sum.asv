@@ -1,0 +1,8 @@
+function y = sample_gauss_sum(u,b)
+   % Función que devuelve una muestra de una distribución gaussiana.
+   % Parámetros:
+   % u = media
+   % b = desvío estandar
+   y = ( (0.5) * sum(unifrnd(-b,b, 12,1)) ) + u
+   return 
+end
