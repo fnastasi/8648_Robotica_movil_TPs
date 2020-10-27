@@ -1,4 +1,4 @@
-function s = sample_gauss_MB(u,b)
+function s = sample_gauss_BM(u,b)
    % Función que devuelve una muestra de una distribución gaussiana.
    % Parámetros:
    % u = media

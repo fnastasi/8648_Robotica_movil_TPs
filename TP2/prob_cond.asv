@@ -1,0 +1,146 @@
+function p = prob_cond(x, u, x_)
+
+    % x: posición siguiente
+    % u: acción, puede tomar el valor 1 o -1
+    % x_: posición actual
+    
+    
+    
+    d = x - x_;
+    
+    if (u== 1)
+        if x_ <=17
+            switch d
+                case 0
+                    p = 0.25; 
+                case 1
+                    p = 0.5 ;
+                case 2
+                    p = 0.25; 
+                otherwise
+                    p = 0;
+            end
+        end
+        if x == 18
+            switch d
+                case 0
+                    p = 0.25; 
+                case 1
+                    p = 0.75 ;
+                otherwise
+                    p = 0;               
+            end
+        end
+        if x == 19
+            p = 1;
+        end
+    end
+    
+    
+    
+    
+    if (u== -1)
+        if x_ >=2
+            switch d
+                case 0
+                    p = 0.25; 
+                case -1
+                    p = 0.5 ;
+                case -2
+                    p = 0.25; 
+                otherwise
+                    p = 0;
+            end
+        end
+        if x == 1
+            switch d
+                case 0
+                    p = 0.25; 
+                case -1
+                    p = 0.75 ;
+                otherwise
+                    p = 0;               
+            end
+        end
+        if x == 0
+            p = 1;
+        end
+    end
+    
+    
+    
+    d = u*(x - x_);
+    
+    % casos cuando no se encuentra en los extremos
+    if (x_ >= 2) && (x_ <= 17)
+        switch d
+            case 0
+                p = 0.25;
+            case 1
+                p = 0.5;
+            case 2
+                p = 0.25;
+            otherwise
+                p = 0;
+        end
+    end
+    
+    
+    % casos cuando se encuentra en la penúltima celda superior
+    if x_==18
+        d = x - x_;
+        if (u == 1)
+            switch d
+                case 0
+                    p = 0.25;
+                case 1
+                    p = 0.75;
+                otherwise
+                    p = 0;
+            end
+        end
+        if (u == -1)
+            switch d
+                case 0
+                    p = 0.25;
+                case -1
+                    p = 0.5;
+                case -2
+                    p = 0.25;
+                otherwise
+                    p = 0;
+            end
+        end
+        
+    end
+    
+    
+    % Casos cuando se encuentra en la penúltima celda inferior
+    if x_==1
+        d = x - x_;
+        if (u == 1)
+            switch d
+                case 0
+                    p = 0.25;
+                case 1
+                    p = 0.50;
+                case 2
+                    p = 0.25;
+                otherwise
+                    p = 0;
+            end
+        end
+        if (u == -1)
+            switch d
+                case 0
+                    p = 0.25;
+                case -1
+                    p = 0.75;
+                otherwise
+                    p = 0;
+            end
+        end
+        
+    end
+    
+end

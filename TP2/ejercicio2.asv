@@ -35,20 +35,19 @@ ylabel("Eje y [m]")
 xlim([1,3])
 ylim([4.5,5.2])
 grid()
-%saveas(gcf,'odom.png')
 
 
 
 
 
-% Se vuelve a simular el movimiento del robot con valores de alpha_i
-% 1 orden menor.
+
+% Se vuelve a simular el movimiento del robot con 
 
 param = [
+    0.1;
+    0.1;
     0.01;
-    0.01;
-    0.001;
-    0.001
+    0.01
 ];
 
 %Cálculo de la pose siguiente
@@ -57,45 +56,12 @@ for i = 1:N
 end
 
 %Gráfico de las poses obtenidas
-figure(2)
+figure(1)
 scatter(pose_sig_array(1,:),pose_sig_array(2,:));
 xlabel("Eje x [m]")
 ylabel("Eje y [m]")
 xlim([1,3])
-ylim([4.3,5.2])
+ylim([4.5,5.2])
 grid()
-%saveas(gcf,'odom_peq_error.png')
 
-
-
-
-
-
-
-
-
-% Se vuelve a simular el movimiento del robot con valores de alpha_i
-% 1 orden mayor al original.
-
-param = [
-    1;
-    1;
-    .1;
-    .1
-];
-
-%Cálculo de la pose siguiente
-for i = 1:N
-    pose_sig_array(:,i) = sample_motion_model(pose_act,odom,param); 
-end
-
-%Gráfico de las poses obtenidas
-figure(3)
-scatter(pose_sig_array(1,:),pose_sig_array(2,:));
-xlabel("Eje x [m]")
-ylabel("Eje y [m]")
-%xlim([0.51,])
-%ylim([4.5,5.2])
-grid()
-%saveas(gcf,'odom_gran_error.png')
 
