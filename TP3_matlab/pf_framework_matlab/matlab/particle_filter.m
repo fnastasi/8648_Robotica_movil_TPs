@@ -1,7 +1,10 @@
+
+clear all
+
 % Make librobotics available
 addpath('librobotics');
 
-clear all
+
 
 % Read world data, i.e. landmarks
 fprintf('Reading world data ...');
@@ -13,9 +16,9 @@ data = read_data('../data/sensor_data.dat');
 fprintf(' done\n');
 
 % Cantidad de partículas
-N = 100;
+N = 500;
 % Initialize particles
-particles = initialize_particles(N);
+particles = initialize_particles(N,"gauss");
 
 
 for t = 1:size(data.timestep, 2)

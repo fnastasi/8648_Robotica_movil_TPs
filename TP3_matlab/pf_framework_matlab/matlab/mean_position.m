@@ -9,6 +9,7 @@ function mean_pos = mean_position(particles, weights)
 
     %% TODO: compute mean_pos  
     particles_pos_wightened = particles.* weights;
-    %mean_pos = mean(particles_pos_wightened);
-    mean_pos = mean(particles);
+    mean_pos = sum(particles_pos_wightened);
+    %mean_pos = mean(particles);
+    
 end
