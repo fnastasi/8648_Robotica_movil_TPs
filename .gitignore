@@ -1,3 +1,4 @@
 TP3_data/
 TP3_python/
-TP3_matlab/pf_framework_matlab/plots/*.png
+TP3_matlab\pf_framework_matlab\plots\*.png
+TP3_matlab\pf_framework_matlab\plots\*.png

@@ -16,6 +16,8 @@ function [mu, sigma] = correction_step(mu, sigma, z, l)
     expected_ranges = zeros(size(z, 2), 1);
     for i = 1:size(z, 2)
         % Todo: Implement
+        % El valor de la medición es la norma euclidiana de la diferencia
+        expected_ranges(i) =  norm(  [ l(z(i).id).x - mu(1) , l(z(i).id).y - mu(2) ] );
     end
 
     % Jacobian of h
@@ -24,13 +26,21 @@ function [mu, sigma] = correction_step(mu, sigma, z, l)
     % Measurements in vectorized form
     Z = zeros(size(z, 2), 1);
     for i = 1:size(z, 2)
-        H(i, :) = % Todo: Implement
-        Z(i) = % Todo: Implement
+        H(i, :) = [mu(1) - l(z(i).id).x,  mu(2) - l(z(i).id).y, 0] / expected_ranges(i) ;
+        Z(i) = z(i).range ;
     end
 
     R = diag(repmat([0.5], size(z, 2), 1));
-
-    K = % Todo: Implement
-    mu = % Todo: Implement
-    sigma = % Todo: Implement
+    
+    % Covarianza de innovación
+    S = H*sigma*H' + R ;
+    
+    % Ganancia de Kalman
+    K = sigma*H'*inv(S);
+    
+    % Media corregido por medición
+    mu = mu + K*(Z - expected_ranges);
+    
+    % Covarianza corregida por medición
+    sigma = ( eye(size(mu,1)) -  K*H)*sigma;
 end

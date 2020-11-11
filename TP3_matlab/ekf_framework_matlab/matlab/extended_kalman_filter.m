@@ -8,6 +8,7 @@
 % If you are unsure about the input and return values of functions you
 % should read their documentation which tells you the expected dimensions.
 
+clear all;
 % Make librobotics available
 addpath('librobotics');
 
@@ -29,7 +30,10 @@ sigma = [1.0, 0.0, 0.0;
 % Perform filter update for each odometry, observation pair read from the
 % data file.
 for t = 1:size(data.timestep, 2)
-    fprintf('.');
+%for t = 1:50
+    if not(rem(t,20))
+        fprintf('.');
+    end
 
     % Perform the prediction step of the EKF
     [mu, sigma] = prediction_step(mu, sigma, data.timestep(t).odometry);
