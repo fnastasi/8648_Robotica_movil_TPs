@@ -1,0 +1,19 @@
+function heur = heuristic(cell, goal)
+  
+    %%
+    
+    % Se agrega un destino que no es el real para ver como se comporta
+    % el algoritmo A* si se agreg
+    goal_trucho = [37,19];
+    
+    %%
+    k_A = 1;
+    
+    
+    heur = k_A * norm(goal-cell);
+
+    %heur = k_A * norm(goal_trucho-cell);
+    heur = 0; % DEBUG -> DESCOMENTAR ESTA LÍNEA
+    
+  
+end
